@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 int main()
 {
@@ -6,17 +7,36 @@ int main()
     cin >> T;
     while (T--)
     {
-        string S, s1, s2;
-        cin >> S;
-        s1 = "010";
-        s2 = "101";
-        int c = S.find(s1); //// if find the return 0 if not then return -1
-        int d = S.find(s2);
-        if (c == 0 || d == 0)
+        int N, i;
+        cin >> N;
+        int arr[N];
+        for (i = 0; i < N; i++)
         {
-            cout << "Good" << endl;
+            cin >> arr[i];
         }
-        else
-            cout << "Bad" << endl;
+        sort(arr, arr + N);
+        for (i = 0; i < N - 1; i++)
+        {
+            int temp = 0;
+            if (i % 2 == 0)
+            {
+                if (arr[i] > arr[i + 1])
+                {
+                    swap(arr[i], arr[i + 1]);
+                }
+            }
+            else
+            {
+                if (arr[i] < arr[i + 1])
+                {
+                    swap(arr[i], arr[i + 1]);
+                }
+            }
+        }
+        for (i = 0; i < N; i++)
+        {
+            cout << arr[i] << ' ';
+        }
+        cout << endl;
     }
 }
